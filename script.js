@@ -33,6 +33,19 @@ if (menuToggle && menu) {
   });
 }
 
+if (window.matchMedia('(max-width: 900px)').matches) {
+  const cards = document.querySelectorAll('.project-card');
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle('in-view', entry.isIntersecting);
+      });
+    },
+    { threshold: 0.35 }
+  );
+  cards.forEach((card) => observer.observe(card));
+}
+
 const faqItems = document.querySelectorAll('.faq-item');
 
 faqItems.forEach((item) => {

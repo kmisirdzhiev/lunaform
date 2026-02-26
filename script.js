@@ -1,3 +1,17 @@
+if (window.matchMedia('(min-width: 901px)').matches && typeof window.Lenis !== 'undefined') {
+  const lenis = new window.Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+}
+
 const siteHeader = document.querySelector('.site-header');
 const heroWrap = document.querySelector('.hero-wrap');
 
